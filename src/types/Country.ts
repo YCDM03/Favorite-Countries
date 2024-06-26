@@ -69,5 +69,5 @@ export type Country = {
 };
 
 export type CountryWithIsFavor = Country & {
-  isFavor: Boolean;
+  isFavor: boolean;
 };

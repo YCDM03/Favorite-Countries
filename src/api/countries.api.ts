@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Country } from "../type/Country";
+import { Country } from "../types/Country";
 
 export const getCountries = async (): Promise<Country[]> => {
   const { data } = await axios.get<Country[]>(
