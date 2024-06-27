@@ -3,6 +3,7 @@ import "./App.css";
 import { Country, CountryWithIsFavor } from "./types/Country";
 import { getCountries } from "./api/countries.api";
 import CountryList from "./components/CountryList";
+import styled from "styled-components";
 
 function App() {
   const [countries, setCountries] = useState<CountryWithIsFavor[]>([]);
@@ -21,23 +22,28 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1>Favorite Countries</h1>
+    <>
+      <StH1>Favorite Countries</StH1>
       <CountryList
         countries={countries.filter((contry) => {
           return contry.isFavor === true;
         })}
         setCountries={setCountries}
       />
-      <h1>Countries</h1>
+      <StH1>Countries</StH1>
       <CountryList
         countries={countries.filter((contry) => {
           return contry.isFavor === false;
         })}
         setCountries={setCountries}
       />
-    </div>
+    </>
   );
 }
+const StH1 = styled.h1`
+  font-size: 40px;
+  font-weight: 600;
+  margin: 20px auto;
+`;
 
 export default App;
