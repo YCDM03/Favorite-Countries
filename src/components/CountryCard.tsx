@@ -36,7 +36,7 @@ function CountryCard({ country, setCountries, setOriginalData }: props) {
     >
       <StCardImg src={flags.svg} alt="" />
       <StH3>{name.common}</StH3>
-      <StH4>{capital}</StH4>d
+      <StH4>{capital}</StH4>
     </StCountryCard>
   );
 }
