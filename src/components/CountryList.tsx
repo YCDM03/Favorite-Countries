@@ -5,9 +5,10 @@ import { CountryWithIsFavor } from "../types/Country";
 interface props {
   countries: CountryWithIsFavor[];
   setCountries: React.Dispatch<React.SetStateAction<CountryWithIsFavor[]>>;
+  setOriginalData: React.Dispatch<React.SetStateAction<CountryWithIsFavor[]>>;
 }
 
-function CountryList({ countries, setCountries }: props) {
+function CountryList({ countries, setCountries, setOriginalData }: props) {
   return (
     <StCountries>
       {countries.map((country: CountryWithIsFavor) => {
@@ -17,10 +18,17 @@ function CountryList({ countries, setCountries }: props) {
             $favor={country.isFavor}
             onClick={() => {
               setCountries((prev) =>
-                prev.map((item) => {
-                  return item.name.common === country.name.common
-                    ? { ...item, isFavor: !item.isFavor }
-                    : item;
+                prev.map((element) => {
+                  return element.name.common === country.name.common
+                    ? { ...element, isFavor: !element.isFavor }
+                    : element;
+                })
+              );
+              setOriginalData((prev) =>
+                prev.map((element) => {
+                  return element.name.common === country.name.common
+                    ? { ...element, isFavor: !element.isFavor }
+                    : element;
                 })
               );
             }}

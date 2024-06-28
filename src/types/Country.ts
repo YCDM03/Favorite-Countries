@@ -18,6 +18,7 @@ export type Country = {
   demonyms: { eng: { f: string; m: string } };
   flag: string;
   flags: { png: string; svg: string };
+  gini?: object;
   idd: { root: string; suffixes: string[] };
   independent: boolean;
   landlocked: boolean;
