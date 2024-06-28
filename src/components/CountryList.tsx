@@ -1,47 +1,48 @@
 import React from "react";
 import styled from "styled-components";
 import { CountryWithIsFavor } from "../types/Country";
+import CountryCard from "./CountryCard";
 
 interface props {
+  title: string;
   countries: CountryWithIsFavor[];
   setCountries: React.Dispatch<React.SetStateAction<CountryWithIsFavor[]>>;
   setOriginalData: React.Dispatch<React.SetStateAction<CountryWithIsFavor[]>>;
+  children?: React.ReactNode;
 }
 
-function CountryList({ countries, setCountries, setOriginalData }: props) {
+function CountryList({
+  title,
+  countries,
+  setCountries,
+  setOriginalData,
+  children,
+}: props) {
   return (
-    <StCountries>
-      {countries.map((country: CountryWithIsFavor) => {
-        return (
-          <StCountryCard
-            key={country.name.common}
-            $favor={country.isFavor}
-            onClick={() => {
-              setCountries((prev) =>
-                prev.map((element) => {
-                  return element.name.common === country.name.common
-                    ? { ...element, isFavor: !element.isFavor }
-                    : element;
-                })
-              );
-              setOriginalData((prev) =>
-                prev.map((element) => {
-                  return element.name.common === country.name.common
-                    ? { ...element, isFavor: !element.isFavor }
-                    : element;
-                })
-              );
-            }}
-          >
-            <StCardImg src={country.flags.svg} alt="" />
-            <StH3>{country.name.common}</StH3>
-            <StH4>{country.capital}</StH4>
-          </StCountryCard>
-        );
-      })}
-    </StCountries>
+    <>
+      <StH1>{title}</StH1>
+      {children}
+      <StCountries>
+        {countries.map((country: CountryWithIsFavor) => {
+          return (
+            <CountryCard
+              key={country.name.common}
+              setCountries={setCountries}
+              setOriginalData={setOriginalData}
+              country={country}
+            />
+          );
+        })}
+      </StCountries>
+    </>
   );
 }
+
+const StH1 = styled.h1`
+  font-size: 40px;
+  font-weight: 600;
+  margin: 20px auto;
+`;
 
 const StCountries = styled.div`
   margin: 0 auto;
@@ -67,35 +68,6 @@ const StCountries = styled.div`
     max-width: 1231px;
     grid-template-columns: repeat(2, 334px);
   }
-`;
-
-const StCountryCard = styled.div<{ $favor: boolean }>`
-  padding: 16px;
-  min-width: 300px;
-  box-shadow: 2px 2px 5px #c5c5c5;
-  height: 180px;
-  border: 1px solid ${(props) => (props.$favor ? "#4DE800" : "#c5c5c5")};
-  border-radius: 5px;
-  align-content: center;
-  transition: all ease 0.2s;
-  cursor: pointer;
-  &:hover {
-    scale: 1.05;
-  }
-`;
-
-const StCardImg = styled.img`
-  width: 100px;
-`;
-
-const StH3 = styled.h3`
-  font-weight: 700;
-  font-size: 24px;
-  margin: 10px auto;
-`;
-const StH4 = styled.h4`
-  font-weight: 600;
-  font-size: 18px;
 `;
 
 export default CountryList;
