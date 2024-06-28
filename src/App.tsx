@@ -3,6 +3,7 @@ import "./App.css";
 import { Country, CountryWithIsFavor } from "./types/Country";
 import { getCountries } from "./api/countries.api";
 import CountryList from "./components/CountryList";
+import styled from "styled-components";
 
 function App() {
   const [countries, setCountries] = useState<CountryWithIsFavor[]>([]);
@@ -42,6 +43,11 @@ function App() {
 
   return (
     <>
+      <StSelect name="" id="" onChange={handleSelectChange}>
+        <option value="기본순">기본순</option>
+        <option value="인구 많은 순">인구 많은 순</option>
+        <option value="인구 적은 순">인구 적은 순</option>
+      </StSelect>
       <CountryList
         title={"Favorite Countries"}
         countries={countries.filter((country) => {
@@ -58,15 +64,13 @@ function App() {
         })}
         setCountries={setCountries}
         setOriginalData={setOriginalData}
-      >
-        <select name="" id="" onChange={handleSelectChange}>
-          <option value="기본순">기본순</option>
-          <option value="인구 많은 순">인구 많은 순</option>
-          <option value="인구 적은 순">인구 적은 순</option>
-        </select>
-      </CountryList>
+      ></CountryList>
     </>
   );
 }
+const StSelect = styled.select`
+  display: block;
+  margin-left: auto;
+`;
 
 export default App;

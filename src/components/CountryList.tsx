@@ -8,7 +8,6 @@ interface props {
   countries: CountryWithIsFavor[];
   setCountries: React.Dispatch<React.SetStateAction<CountryWithIsFavor[]>>;
   setOriginalData: React.Dispatch<React.SetStateAction<CountryWithIsFavor[]>>;
-  children?: React.ReactNode;
 }
 
 function CountryList({
@@ -16,12 +15,11 @@ function CountryList({
   countries,
   setCountries,
   setOriginalData,
-  children,
 }: props) {
   return (
     <>
       <StH1>{title}</StH1>
-      {children}
+
       <StCountries>
         {countries.map((country: CountryWithIsFavor) => {
           return (
