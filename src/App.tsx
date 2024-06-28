@@ -64,7 +64,7 @@ function App() {
         })}
         setCountries={setCountries}
         setOriginalData={setOriginalData}
-      ></CountryList>
+      />
     </>
   );
 }
