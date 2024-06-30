@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Country, CountryWithIsFavor } from "./types/Country";
-import { getCountries } from "./api/countries.api";
+import { CountriesAPI } from "./api/countries.api";
 import CountryList from "./components/CountryList";
 import styled from "styled-components";
 
@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     const getData = async (): Promise<void> => {
-      const contries: Country[] = await getCountries();
+      const contries: Country[] = await CountriesAPI.getCountries();
       const countryWithIsFavor: CountryWithIsFavor[] = contries.map(
         (country) => {
           return { ...country, isFavor: false };
@@ -44,9 +44,9 @@ function App() {
   return (
     <>
       <StSelect name="" id="" onChange={handleSelectChange}>
-        <option value="기본순">기본순</option>
-        <option value="인구 많은 순">인구 많은 순</option>
-        <option value="인구 적은 순">인구 적은 순</option>
+        {["기본 순", "인구 많은 순", "인구 적은 순"].map((filter) => {
+          return <option value={filter}>{filter}</option>;
+        })}
       </StSelect>
       <CountryList
         title={"Favorite Countries"}

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { CountryWithIsFavor } from "../types/Country";
 import CountryCard from "./CountryCard";
 
-interface props {
+interface CountryListProps {
   title: string;
   countries: CountryWithIsFavor[];
   setCountries: React.Dispatch<React.SetStateAction<CountryWithIsFavor[]>>;
@@ -15,7 +15,7 @@ function CountryList({
   countries,
   setCountries,
   setOriginalData,
-}: props) {
+}: CountryListProps) {
   return (
     <>
       <StH1>{title}</StH1>

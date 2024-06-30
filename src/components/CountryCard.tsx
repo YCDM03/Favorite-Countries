@@ -1,13 +1,17 @@
 import { CountryWithIsFavor } from "../types/Country";
 import styled from "styled-components";
 
-interface props {
+interface CountryCardsProps {
   country: CountryWithIsFavor;
   setCountries: React.Dispatch<React.SetStateAction<CountryWithIsFavor[]>>;
   setOriginalData: React.Dispatch<React.SetStateAction<CountryWithIsFavor[]>>;
 }
 
-function CountryCard({ country, setCountries, setOriginalData }: props) {
+function CountryCard({
+  country,
+  setCountries,
+  setOriginalData,
+}: CountryCardsProps) {
   const { name, isFavor, flags, capital } = country;
 
   const changeCountryIsFavor = (country: CountryWithIsFavor) => {
@@ -65,6 +69,7 @@ const StH3 = styled.h3`
   font-size: 24px;
   margin: 10px auto;
 `;
+
 const StH4 = styled.h4`
   font-weight: 600;
   font-size: 18px;

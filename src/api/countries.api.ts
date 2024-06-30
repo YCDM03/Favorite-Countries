@@ -1,9 +1,9 @@
-import axios from "axios";
+import { countriesInstance } from "./api";
 import { Country } from "../types/Country";
 
-export const getCountries = async (): Promise<Country[]> => {
-  const { data } = await axios.get<Country[]>(
-    "https://restcountries.com/v3.1/all"
-  );
-  return data;
+export const CountriesAPI = {
+  getCountries: async (): Promise<Country[]> => {
+    const { data } = await countriesInstance.get<Country[]>("all");
+    return data;
+  },
 };
